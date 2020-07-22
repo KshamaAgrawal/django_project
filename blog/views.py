@@ -24,7 +24,7 @@ def post_new(request):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('post_detail', slug=post.slug)
+			return redirect('blog:post_detail', slug=post.slug)
 	else:
 		form=PostForm()
 	return render(request, 'blog/post_edit.html', {'form' : form})	
@@ -39,7 +39,7 @@ def post_edit(request, slug):
 			post.author = request.user
 			post.published_date = timezone.now()
 			post.save()
-			return redirect('post_detail' , slug=post.slug)
+			return redirect('blog:post_detail' , slug=post.slug)
 	else:
 		form=PostForm(instance = post)
 	return render(request, 'blog/post_edit.html' , {'form' : form})	
@@ -54,7 +54,7 @@ def signup(request):
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username = username , password = raw_password)
 			login(request,user.username)
-			return redirect('post_list')
+			return redirect('blog:post_list')
 	else: 
 		form = UserCreationForm()
 	return render(request, 'blog/signup.html' , {'form' : form})	
