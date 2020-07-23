@@ -24,6 +24,4 @@ class Post(models.Model):
 		return self.title	
 
 	def get_absolute_url(self):
-		return "/post/%i" % self.id
-
-					
+		return "/post/%i" % self.id					
